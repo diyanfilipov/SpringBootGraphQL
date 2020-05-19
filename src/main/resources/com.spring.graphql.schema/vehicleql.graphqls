@@ -1,0 +1,51 @@
+type Vehicle {
+    id: ID!,
+    type: String,
+    modelCode: String,
+    brandName: String,
+    launchDate: String
+}
+
+type User {
+    id: ID!,
+    login: String!,
+    street: String,
+    zipCode: String,
+    city: String,
+    roles: [Role]
+}
+
+type Role {
+    id: ID!,
+    name: String!,
+}
+
+type Query {
+    vehicles(count: Int): [Vehicle]
+    vehicle(id: ID!): Vehicle
+
+    users(count: Int): [User]
+    user(id: ID!): User
+
+    roles(count: Int): [Role]
+    role(id: ID!): Role
+
+}
+
+type Mutation {
+    createVehicle(type: String!, modelCode: String!, brandName: String, launchDate: String): Vehicle
+    createUser(login: String!): User
+    updateUserRoles(id: ID!, roles: [String!]!): User
+    createRole(name: String!): Role
+}
+
+type Subscription {
+    subscribeToUserChanges(login: String!): User!
+}
+
+fragment userDetails on User {
+    login
+    street
+    zipCode
+    city
+}

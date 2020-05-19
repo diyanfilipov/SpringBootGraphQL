@@ -1,0 +1,45 @@
+group 'com.spring.graphql'
+version '1.0-SNAPSHOT'
+
+buildscript {
+  ext {
+    springVersion = '2.1.8.RELEASE'
+  }
+
+  repositories {
+    mavenCentral()
+    maven {
+      url "https://plugins.gradle.org/m2/"
+    }
+  }
+
+  dependencies {
+    classpath("io.spring.gradle:dependency-management-plugin:1.0.8.RELEASE")
+    classpath "org.springframework.boot:spring-boot-gradle-plugin:2.1.8.RELEASE"
+  }
+}
+
+repositories {
+  mavenCentral()
+}
+
+apply plugin: 'idea'
+apply plugin: 'groovy'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+dependencies {
+  compile 'org.codehaus.groovy:groovy-all:2.4.3'
+  compile "org.springframework.boot:spring-boot-starter-web:${springVersion}"
+  compile "org.springframework.boot:spring-boot-starter-data-jpa:${springVersion}"
+  compile 'com.graphql-java:graphiql-spring-boot-starter:5.0.2'
+  compile 'com.graphql-java:graphql-spring-boot-starter:5.0.2'
+  compile 'com.graphql-java:graphql-java-tools:5.2.4'
+//  compile 'io.leangen.graphql:spqr:0.9.6'
+  compile "io.reactivex.rxjava2:rxjava:2.1.5"
+//  compile "com.google.code.gson:gson:2.8.0"
+  
+  runtime 'com.h2database:h2:1.4.199'
+
+  testCompile group: 'junit', name: 'junit', version: '4.12'
+}
